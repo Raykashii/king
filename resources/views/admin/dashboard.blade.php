@@ -323,7 +323,7 @@
                     <div class="icon">
                         <i class="fas fa-file-invoice"></i>
                     </div>
-                    <h6 class="card-title">Total Invoices</h6>
+                    <h6 class="card-title">Total Transaction</h6>
                     <h2 class="card-value">{{ $totalTransactions }}</h2>
                 </div>
             </div>
@@ -332,7 +332,7 @@
                     <div class="icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <h6 class="card-title">Paid Invoices</h6>
+                    <h6 class="card-title">Paid Transaction</h6>
                     <h2 class="card-value">{{ $completedTransactions }}</h2>
                 </div>
             </div>
@@ -341,7 +341,7 @@
                     <div class="icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <h6 class="card-title">Unpaid Invoices</h6>
+                    <h6 class="card-title">Unpaid Transaction</h6>
                     <h2 class="card-value">{{ $pendingTransactions }}</h2>
                 </div>
             </div>
