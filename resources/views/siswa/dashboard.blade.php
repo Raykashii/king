@@ -294,25 +294,25 @@
                             </div>
                         </div>
                         <h3 class="mb-3">Rp {{ number_format($saldo, 2, ',', '.') }}</h3>
-                        <span class="trend-badge bg-primary bg-opacity-10 text-primary">
+                        {{-- <span class="trend-badge bg-primary bg-opacity-10 text-primary">
                             <i class="bi bi-arrow-{{ $balanceChange >= 0 ? 'up' : 'down' }}-short"></i>
                             {{ number_format(abs($balanceChange), 2, ',', '.') }}% Last Year
-                        </span>                        
+                        </span>                         --}}
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="stat-card">
                         <div class="d-flex justify-content-between mb-3">
-                            <h6 class="text-muted">Total Income</h6>
+                            <h6 class="text-muted">Total Top up</h6>
                             <div class="bg-success bg-opacity-10 p-2 rounded">
                                 <i class="bi bi-cash-coin text-success"></i>
                             </div>
                         </div>
                         <h3 class="mb-3">Rp {{ number_format($totalTopUp, 2, ',', '.') }}</h3>
-                        <span class="trend-badge bg-success bg-opacity-10 text-success">
+                        {{-- <span class="trend-badge bg-success bg-opacity-10 text-success">
                             <i class="bi bi-arrow-up-short"></i>
                             {{ number_format(abs($topUpChange), 2, ',', '.') }}% this month
-                        </span>
+                        </span> --}}
                     </div>
                 </div>
 
@@ -320,16 +320,16 @@
                 <div class="col-md-4 mb-4">
                     <div class="stat-card">
                         <div class="d-flex justify-content-between mb-3">
-                            <h6 class="text-muted">Total Spending</h6>
+                            <h6 class="text-muted">Total Withdraw</h6>
                             <div class="bg-danger bg-opacity-10 p-2 rounded">
                                 <i class="bi bi-graph-down text-danger"></i>
                             </div>
                         </div>
                         <h3 class="mb-3">Rp {{ number_format($totalWithDraw, 2, ',', '.') }}</h3>
-                        <span class="trend-badge bg-danger bg-opacity-10 text-danger">
+                        {{-- <span class="trend-badge bg-danger bg-opacity-10 text-danger">
                             <i class="bi bi-arrow-down-short"></i>
                             {{ number_format(abs($withDrawChange), 2, ',', '.') }}% this month
-                        </span>
+                        </span> --}}
                     </div>
                 </div>
             </div>
@@ -595,6 +595,12 @@
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="card-title">Transaction History</h5>
                         <div class="d-flex gap-3 align-items-center">
+                            <!-- Search Input -->
+                            <input type="text" name="search" id="search" class="form-control form-control-sm"
+                            placeholder="Search transactions..." value="{{ request('search') }}">
+                    
+                            <button class="btn btn-sm btn-primary" onclick="searchTransactions()">Cari</button>
+                    
                             <!-- Date Range Filter -->
                             <select name="date_range" class="form-select form-select-sm" onchange="filterTransactions()">
                                 <option value="">All Time</option>
@@ -604,6 +610,7 @@
                                 <option value="180" {{ request('date_range') == '180' ? 'selected' : '' }}>Last 6 months</option>
                                 <option value="365" {{ request('date_range') == '365' ? 'selected' : '' }}>Last year</option>
                             </select>
+                    
                             <!-- Transaction Type Filter -->
                             <select name="type" class="form-select form-select-sm" onchange="filterTransactions()">
                                 <option value="all" {{ request('type') == 'all' ? 'selected' : '' }}>All Transactions</option>
@@ -613,7 +620,7 @@
                             </select>
                         </div>
                     </div>
-
+                    
                     <!-- Transaction Table -->
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -756,7 +763,6 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Download Receipt</button>
                             </div>
                         </div>
                     </div>
@@ -1364,6 +1370,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     </script>
+
+<script>
+    function searchTransactions() {
+        let search = document.getElementById('search').value;
+        let url = new URL(window.location.href);
+        url.searchParams.set('search', search);
+        window.location.href = url.toString();
+    }
+</script>
+
 </body>
 
 </html>

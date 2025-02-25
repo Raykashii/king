@@ -21,6 +21,17 @@ class SiswaController extends Controller
     
         $transactionsQuery = Transaction::where('account_id', $account->id);
     
+
+         // Apply search filter
+    if ($request->has('search') && !empty($request->search)) {
+        $search = $request->search;
+        $transactionsQuery->where(function ($query) use ($search) {
+            $query->where('description', 'like', "%$search%")
+                  ->orWhere('amount', 'like', "%$search%")
+                  ->orWhere('type', 'like', "%$search%")
+                  ->orWhere('id', 'like', "%$search%");                  
+        });
+    }
         // Apply date filter if provided
         if ($request->has('date_range')) {
             $days = $request->date_range;

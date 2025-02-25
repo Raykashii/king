@@ -183,8 +183,7 @@
             </li>
         </ul>
         
-        <div class="user-profile mt-auto">
-            <img src="/api/placeholder/40/40" alt="Admin">
+        <div class="user-profile mt-auto">           
             <div class="user-info">
                 <div class="user-name">Admin</div>
                 <a href="{{ route('logout') }}" 
@@ -323,17 +322,7 @@
                                             @endif
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            @if($transaction->status == 'pending')
-                                                <form action="{{ route('admin.transaction.approve', $transaction->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-success">Approve</button>
-                                                </form>
-                                                <form action="{{ route('admin.transaction.reject', $transaction->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Reject</button>
-                                                </form>
-                                            @endif
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                                           
                                         </div>
                                     </div>
                                 </div>

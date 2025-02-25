@@ -25,19 +25,13 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');  
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');  
 
-Route::middleware(['auth'])->group(function () {  
-    Route::get('/admin/dashboard', function () {  
-        return view('admin.dashboard');  
-    })->name('admin.dashboard');  
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+    ->middleware('ensure.auth')
+    ->name('admin.dashboard');
 
-    Route::get('/siswa/dashboard', function () {  
-        return view('siswa.dashboard');  
-    })->name('siswa.dashboard');  
-
-    Route::get('/bank_mini/dashboard', function () {  
-        return view('bank_mini.dashboard');  
-    })->name('bank_mini.dashboard');  
-});  
+Route::get('/bank_mini/dashboard', [BankMiniController::class, 'index'])
+    ->middleware('ensure.auth')
+    ->name('bank_mini.dashboard');
 
 Route::get('admin/transactions', [AdminDashboardController::class, 'transactions'])->name('admin.transactions');
 Route::post('admin/transaction/{id}/approve', [AdminDashboardController::class, 'approveTransaction'])->name('admin.transaction.approve');

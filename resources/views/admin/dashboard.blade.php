@@ -277,8 +277,7 @@
             </li>
         </ul>
         
-        <div class="user-profile mt-auto">
-            <img src="/api/placeholder/40/40" alt="Admin">
+        <div class="user-profile mt-auto">           
             <div class="user-info">
                 <div class="user-name">Admin</div>
                 <a href="{{ route('logout') }}" 
@@ -305,16 +304,7 @@
 
         <div class="dashboard-header">
             <h2>Dashboard</h2>
-            <div class="d-flex">
-                <div class="search-box me-3">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search here...">
-                </div>
-                <button class="btn btn-report">
-                    <i class="fas fa-file-download me-2"></i> Generate Report
-                </button>
             </div>
-        </div>
 
         <!-- Stats Cards -->
         <div class="row">
